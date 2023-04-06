@@ -6,7 +6,6 @@ $(document).ready(function(){
      // Generate quiz questions
      // ...
      
-     //let quizBox = document.getElementById ("quiz-box"); // JS way
      quizBox = $("#quiz-box"); // Jquery
      function generatefunc() {
          for (let i = 0; i < questions.length; i++) {
@@ -25,9 +24,11 @@ $(document).ready(function(){
      $("button").click(function() {
           let countCorrect = 0;
           
-          // Check answers
+          // To check answers
           for (let i = 0; i < questions.length; i++) {
-            let selected = $("input[name='q" + i + "']:checked").val();
+            let selector = "input[name='q" + i + "']:checked";
+            let selectedInput = $(selector);
+            let selected = selectedInput.val();
             if (selected === correct[i]) {
               countCorrect++;
             }
@@ -37,7 +38,7 @@ $(document).ready(function(){
           let latestScore = countCorrect;
           // To not repeat the "Results of the quiz" several times
           quizBox.find("h2").remove();
-          // To display the overall score 
+          // To show the overall score 
           quizBox.append("<h2>Result of the quiz is: " + latestScore + " out of " + questions.length + "</h2>");
      });
 });
